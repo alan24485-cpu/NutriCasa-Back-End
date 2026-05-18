@@ -21,6 +21,12 @@ export const createComment = async (req: AuthRequest, res: Response): Promise<vo
       return;
     }
 
+        const existing = await Comment.findOne({ recipeId, userId });
+    if (existing) {
+      res.status(409).json({ message: 'Ya comentaste esta receta.' });
+      return;
+    }
+
     const newComment = await Comment.create({
       recipeId,
       userId,
