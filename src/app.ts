@@ -137,6 +137,5 @@ class Server {
 }
 
 const server = new Server();
-server.start();
 
-export default server.app;
+export default server;
