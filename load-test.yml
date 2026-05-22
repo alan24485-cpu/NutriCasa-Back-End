@@ -1,0 +1,23 @@
+config:
+  target: "http://localhost:3000"
+  phases:
+    - duration: 20
+      arrivalRate: 10
+      name: "Calentamiento"
+    - duration: 30
+      arrivalRate: 50
+      name: "Carga media"
+    - duration: 20
+      arrivalRate: 100
+      name: "Pico máximo"
+
+scenarios:
+  - name: "Rutas públicas"
+    flow:
+      - get:
+          url: "/health"
+      - post:
+          url: "/api/auth/login"
+          json:
+            email: "test@nutricasa.com"
+            password: "Test1234!"
