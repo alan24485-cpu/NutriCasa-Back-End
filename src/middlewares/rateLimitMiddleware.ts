@@ -4,6 +4,7 @@ import rateLimit from 'express-rate-limit';
 export const globalLimiter = rateLimit({
     windowMs: 1 * 60 * 1000, 
     max: 200, 
+    skip: () => process.env.DISABLE_RATE_LIMIT === 'true',
     message: { 
         message: 'Demasiadas peticiones, por favor intente más tarde.' 
     },
@@ -15,6 +16,7 @@ export const globalLimiter = rateLimit({
 export const strictAuthLimiter = rateLimit({
     windowMs: 15 * 60 * 1000, 
     max: 10, 
+    skip: () => process.env.DISABLE_RATE_LIMIT === 'true',
     message: { 
         message: 'Demasiados intentos desde esta IP, por favor intente nuevamente después de 15 minutos.' 
     },
