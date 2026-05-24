@@ -11,7 +11,6 @@ export class EmailService {
    */
   private static async sendEmail(to: string, subject: string, html: string, senderName?: string) {
     try {
-      console.log(`📧 Enviando email a: ${to} con asunto: "${subject}"...`);
       
       const response = await fetch(this.API_URL, {
         method: 'POST',
@@ -38,7 +37,6 @@ export class EmailService {
       }
 
       const data = await response.json();
-      console.log(`✅ Email enviado con éxito. ID: ${data.messageId}`);
       return data;
     } catch (error) {
       console.error('❌ Error en EmailService:', error);
