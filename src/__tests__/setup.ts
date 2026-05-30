@@ -1,6 +1,6 @@
 /// <reference types="jest" />
 import mongoose from 'mongoose';
-import { nativeClient } from '../../config/db';
+import { nativeClient } from '../config/db';
 
 const MONGO_TEST_URI =
   process.env.MONGO_TEST_URI ||
