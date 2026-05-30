@@ -39,7 +39,7 @@ class Server {
     this.routes();
   }
 
-  private async config(): Promise<void> {
+  private config(): void {
     this.app.set('port', process.env.PORT || 3000);
 
     // Seguridad con Helmet

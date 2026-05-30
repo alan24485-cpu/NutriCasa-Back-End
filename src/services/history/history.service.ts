@@ -64,7 +64,7 @@ export class HistoryService {
    * Incluye favoriteCategory con populate.
    */
   static async getUserStats(userId: string) {
-    const history = await CookingHistory.find({ userId }).lean();
+    const history = await CookingHistory.find({ userId }).populate("recipeId", "category").lean();
 
     if (history.length === 0) {
       return {

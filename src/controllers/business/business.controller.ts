@@ -16,13 +16,14 @@ export const getAllBusinesses = async (req: Request, res: Response): Promise<voi
 export const getBusinessById = async (req: Request, res: Response): Promise<void> => {
   try {
     const { id } = req.params;
+    const idStr = typeof id === "string" ? id : Array.isArray(id) ? id[0] : "";
 
-    if (!ObjectId.isValid(id)) {
+    if (!ObjectId.isValid(idStr)) {
       res.status(400).json({ success: false, message: 'ID inválido' });
       return;
     }
 
-    const business = await BusinessRepository.getBusinessById(id);
+    const business = await BusinessRepository.getBusinessById(idStr);
 
     if (!business) {
       res.status(404).json({ success: false, message: 'Negocio no encontrado' });
