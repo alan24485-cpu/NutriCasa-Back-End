@@ -427,7 +427,7 @@ export const updateMe = async (req: Request, res: Response): Promise<void> => {
         .forEach(f => { if (profile[f] !== undefined) updateData[`profile.${f}`] = profile[f]; });
     }
     const user = await User.findByIdAndUpdate(
-      (req as any).userId, { $set: updateData }, { returnDocument: 'after', runValidators: true }
+      (req as any).userId, { $set: updateData }, { new: true, runValidators: true }
     ).select('-password');
     if (!user) { res.status(404).json({ message: 'Usuario no encontrado' }); return; }
     res.status(200).json({ message: 'Perfil actualizado', user });
@@ -465,7 +465,7 @@ export const setupProfile = async (req: Request, res: Response): Promise<void> =
         'profile.dietType': dietType, 'profile.allergies': allergies ?? [],
         'profile.dailyCalories': dailyCalories, 'profile.macros': macros,
       }},
-      { returnDocument: 'after', runValidators: true }
+      { new: true, runValidators: true }
     ).select('-password');
 
     res.status(200).json({ message: 'Perfil nutricional configurado', user: updated, calculated: { dailyCalories, macros } });

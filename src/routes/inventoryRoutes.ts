@@ -27,6 +27,7 @@ router.post(
       .isNumeric().withMessage('La cantidad debe ser un número')
       .isFloat({ min: 0 }).withMessage('La cantidad mínima es 0'),
     body('unit').optional().isString().trim().escape(),
+    body('category').notEmpty().withMessage('La categoría es requerida').trim().escape(),
   ],
   validate,
   addInventoryItem

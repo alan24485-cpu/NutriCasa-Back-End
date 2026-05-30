@@ -19,7 +19,7 @@ const connectDB = async (): Promise<void> => {
 export default connectDB;
 
 // ─── MongoDB Native Driver (para business / geolocalización) ──────────────────
-let nativeClient: MongoClient | null = null;
+export let nativeClient: MongoClient | null = null;
 let nativeDb: Db | null = null;
 
 export const connectNativeDB = async (): Promise<void> => {
